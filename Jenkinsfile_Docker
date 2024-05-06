@@ -43,5 +43,16 @@ pipeline {
          }
         }
       }
+
+      // Updating existing service in ECS
+         stage('Deploy') {
+            steps{  
+                script {
+                sh "aws ecs update-service --cluster BackendCluster --service staging-api --force-new-deployment --region ap-south-1"
+                }
+            }
+        }
     }
 }
+    
+
